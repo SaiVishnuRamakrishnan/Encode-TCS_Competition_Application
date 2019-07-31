@@ -1,6 +1,6 @@
 var result_table = document.getElementById("result_table");
 var test_case = ["Login", "Hotel Booking", "Flight Booking", "Car Booking"];
-var pass=0,fail=0;
+var pass = 0, fail = 0;
 
 var xobj = new XMLHttpRequest();
 xobj.overrideMimeType("application/json");
@@ -36,7 +36,7 @@ xobj.onreadystatechange = function () {
                 datasets: [{
                     label: 'STATUS',
                     data: [pass, fail],
-                    backgroundColor: ['rgba(0,229,76,0.8)','rgba(230,61,0,0.8)']
+                    backgroundColor: ['rgba(0,229,76,0.8)', 'rgba(230,61,0,0.8)']
                 }]
             }
         });
@@ -45,3 +45,13 @@ xobj.onreadystatechange = function () {
 
 xobj.send(null)
 
+$(document).ready(function () {
+    $.ajax({
+        url: "sample.txt",
+        dataType: "text",
+        success: function (data) {
+            // $(".text").html(data);
+            document.querySelector('.log').innerHTML = data;
+        }
+    });
+}); 

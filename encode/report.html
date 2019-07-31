@@ -4,9 +4,12 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
     integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
   <script type="text/javascript" src="result.json"></script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -26,10 +29,18 @@
       </table>
     </div>
     <div class="report-table graph">
+      <div class="report-label ">
+        <span>Report Graph:</span>
+      </div>
+      <canvas id="result-pie"></canvas>
+    </div>
+    <div class="report-table graph">
         <div class="report-label ">
-          <span>Report Graph:</span>
+          <span>Report Log:</span>
         </div>
-        <canvas id="result-pie"></canvas>
+        <div class="log">
+
+        </div>
       </div>
   </div>
 
