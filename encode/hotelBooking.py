@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import xml.etree.cElementTree as ET
 import pyscreenshot as ImageGrab
 import random
+import logging
 import driverMain
 
 class hotelClass:
@@ -26,108 +27,54 @@ class hotelClass:
 
         def hotelForm(self, driver):
             try:
-                tree = ET.ElementTree(file="data.xml")
-                root= tree.getroot()
+                tree = ET.ElementTree(file = "data.xml")
+                root = tree.getroot()
                 for child in root:
                     if child.tag == "items":
                         for i in child:
-                            username=(i.get('username'))
-                            email=(i.get('email'))
-                            password=(i.get('password'))
-                            lastname=(i.get('lastname'))
-                            smonth=(i.get('smonth'))
-                            sdate=(i.get('sdate'))
-                            dmonth=(i.get('dmonth'))
-                            ddate=(i.get('ddate'))
-                            adult=(i.get('adult'))
-                            child=(i.get('child'))
-                            phonenumber=(i.get('phonenumber'))
-                            cardnumber=(i.get('cardnumber'))
-                time.sleep(8)
-                print("next module")
-                # elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/a/strong')
-                # elem.click()
-                # elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/ul/li[8]/a')
-                # elem.click()
-                time.sleep(5)
+                            username = (i.get('username'))
+                            email = (i.get('email'))
+                            password = (i.get('password'))
+                            lastname = (i.get('lastname'))
+                            smonth = (i.get('smonth'))
+                            sdate = (i.get('sdate'))
+                            dmonth = (i.get('dmonth'))
+                            ddate = (i.get('ddate'))
+                            adult = (i.get('adult'))
+                            child = (i.get('child'))
+                            phonenumber = (i.get('phonenumber'))
+                            cardnumber = (i.get('cardnumber'))
+                
+                logging.basicConfig(level=logging.INFO,filename='hotel_log_test.log',filemode='a',format='%(name)s - %(levelname)s - %(message)s')
+                logging.info("----------HOTEL BOOKING------------")
+                logging.info("ENTERING USER REQUEST CREDENTIALS")
 
-                elem=driver.find_element_by_xpath("//a[contains(.,'Search by Hotel or City Name')]")
+                time.sleep(8)
+
+                im=ImageGrab.grab(bbox = None)
+                # number = random.randrange(1,10000,1)
+                im.save('Screenshots/hotel_main_page.png')
+                time.sleep(3)
+
+                driver.switch_to.window(driver.window_handles[1])
+
+                elem = driver.find_element_by_xpath("//a[contains(.,'Search by Hotel or City Name')]")
                 elem.click()
                 elem.send_keys('Chennai')
                 time.sleep(6)
                 elem.send_keys(Keys.RETURN)
                 elem=driver.find_element_by_xpath("//input[@name='checkin']")
                 elem.click()
-                # elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/thead/tr[1]/th[2]')
-                # mnth=elem.text
-                # time.sleep(4)
+
                 depdat=driver.find_element_by_xpath("//*[@id='dpd1']/div/input")
                 depdat.click()
                 depdat.clear()
                 depdat.send_keys("05/11/2019")
 
-
-                # elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/thead/tr[1]/th[2]')
-                # mnth=elem.text
-                # while(1):
-                #     if mnth==smonth:
-                #         time.sleep(1)
-                #         elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/tbody/tr[1]/td[1]')
-                #         ssate=elem.text
-                #         elem.click()
-                #         f = 0
-                #         for i in range (1,7):
-                #             for j in range (1,8):
-                #                 if sdate == int(ssate):
-                #                     elem.click()
-                #                     f = 1
-                #                     break
-                #                 else:
-                #                     elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/tbody/tr['+str(i)+']/td['+str(j)+']')
-                #                     ssate=elem.text
-                #             if f == 1:
-                #                 break
-                #         break
-                #     else:
-                #         elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/thead/tr[1]/th[3]')#arrow
-                #         elem.click()
-                #         elem=driver.find_element_by_xpath('/html/body/div[13]/div[1]/table/thead/tr[1]/th[2]')#mounth
-                #         mnth=elem.text
-                #         time.sleep(1)
-
                 elem=driver.find_element_by_xpath('//*[@id="dpd2"]/div/input')
                 elem.click()
                 elem.clear()
                 elem.send_keys('07/11/2019')
-
-                # elem=driver.find_element_by_xpath('/html/body/div[14]/div[1]/table/thead/tr[1]/th[2]')
-                # dmnth=elem.text
-                # print(dmnth)
-                # while(1):
-                #     if dmnth==dmonth:
-                #         time.sleep(1)
-                #         elem=driver.find_element_by_xpath('/html/body/div[14]/div[1]/table/tbody/tr[1]/td[1]')
-                #         dsate=elem.text
-                #         elem.click()
-                #         f = 0
-                #         for i in range (1,7):
-                #             for j in range (1,8):
-                #                 if ddate == int(dsate):
-                #                     elem.click()
-                #                     f = 1
-                #                     break
-                #                 else:
-                #                     elem=driver.find_element_by_xpath('/html/body/div[14]/div[1]/table/tbody/tr['+str(i)+']/td['+str(j)+']')
-                #                     dsate=elem.text
-                #             if f == 1:
-                #                 break
-                #         break
-                #     else:
-                #         elem=driver.find_element_by_xpath('/html/body/div[14]/div[1]/table/thead/tr[1]/th[3]')#arrow//
-                #         elem.click()
-                #         elem=driver.find_element_by_xpath('/html/body/div[14]/div[1]/table/thead/tr[1]/th[2]')#mounth
-                #         dmnth=elem.text
-                #         time.sleep(1)
                 
                 elem=driver.find_element_by_xpath("//input[contains(@data-toggle,'collapse')]")
                 elem.click()
@@ -141,13 +88,16 @@ class hotelClass:
                 elem.send_keys(child)
                 elem.send_keys(Keys.RETURN)
                 time.sleep(6)
-
+                logging.info("USER CREDENTIALAS ENTERED")
+                
+                logging.info("CHANGING THE CURRENCY")
                 elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/a/strong')
                 elem.click()
                 elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/ul/li[8]/a')
                 elem.click()
-                time.sleep(8)
+                time.sleep(10)
 
+                logging.info("APPLYING FILTERS")
                 elem=driver.find_element_by_xpath('//*[@id="collapse1"]/div[1]/div[3]/label/div/ins')
                 elem.click()
                 time.sleep(10)
@@ -157,25 +107,31 @@ class hotelClass:
                 elem.click()
                 time.sleep(10)
 
-                im = ImageGrab.grab()
-                number = random.randrange(1,10000,1)
-                im.save('screenshot'+str(number)+'.png')
+                logging.error("FILTERS NOT APPLIED")
+                logging.info("SCREENSHOT CAPTURED")
+                im=ImageGrab.grab(bbox = None)
+                # number = random.randrange(1,10000,1)
+                im.save('Screenshots/filter_not_applied.png')
                 time.sleep(3)
-
+                
+                logging.info("SELECTING HOTEL")
                 elem=driver.find_element_by_xpath('//*[@id="listing"]/tbody/tr[1]/td/div[3]/form/button')
                 elem.click()
                 time.sleep(6)
                 
-                im = ImageGrab.grab()
-                number = random.randrange(1,10000,1)
-                im.save('screenshot'+str(number)+'.png')
+                logging.error("NO OTHER THAN DETAILS BUTTON IS USED TO SELECT HOTEL")
+                logging.info("SCREENSHOT CAPTURED")
+                im=ImageGrab.grab(bbox = None)
+                # number = random.randrange(1,10000,1)
+                im.save('Screenshots/hotel_select.png')
                 time.sleep(10)
 
                 driver.execute_script("window.scrollTo(0, 1050)")
 
                 elem=driver.find_element_by_xpath('//*[@id="rooms"]/div[3]/div/div[3]/div/div/div/div[3]/form/button')
                 elem.click()
-
+                
+                logging.info("ENTERING USER CREDENTIALS")
                 elem=driver.find_element_by_xpath('//*[@id="first_name"]')
                 elem.click()
                 elem.send_keys(username)
@@ -199,7 +155,8 @@ class hotelClass:
                 elem.send_keys(phonenumber)
 
                 driver.execute_script("window.scrollTo(0, 1000)")
-
+                
+                logging.info("ENTERING USER CARD CREDENTIALS")
                 elem=driver.find_element_by_xpath('//*[@id="cardHolderName"]')
                 elem.click()
                 elem.send_keys(username)
@@ -217,13 +174,17 @@ class hotelClass:
 
                 elem=driver.find_element_by_xpath('//*[@id="completeBooking"]')
                 elem.click()
-                time.sleep(5)
-
+                time.sleep(8)
+                
+                logging.error("REPORT NOT GENERATED")
+                logging.info("SCREEN CAPTURED")
                 #report not generated
-                im = ImageGrab.grab()
-                number = random.randrange(1,10000,1)
-                im.save('screenshot'+str(number)+'.png')
+                im=ImageGrab.grab(bbox = None)
+                # number = random.randrange(1,10000,1)
+                im.save('Screenshots/hotel_boking.png')
 
+                logging.info("-----------------HOTEL BOOKING SUCESSFULLY TESTED-------------------")
+        
                 return 1
 
             except :
@@ -233,7 +194,6 @@ class hotelClass:
 if __name__ == "__main__":
     obj = hotelClass()
     obj.hotelForm(driverMain.Core)
-    # print(result)
-    # driverMain.store(result)
+ 
 
 

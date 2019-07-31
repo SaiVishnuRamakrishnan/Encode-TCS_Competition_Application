@@ -1,11 +1,9 @@
-import login
+import registration
 import json
 import hotelBooking
-# from hotelBooking import hotelClass
-# from carBooking import carClass
 import flightBooking
 import carBooking
-# from flightBooking import flightClass
+import login
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -19,28 +17,21 @@ a = []
 
 def store(a):
     data={}
-    if(len(a)==4):
+    if(len(a)==5):
         data['result'] = a
         with open('result.json','w') as outfile:
             json.dump(data,outfile)
 
 if __name__ == "__main__":
             driver = Core()
-            login_result = login.loginClass().loginForm(driver)
-            a.append(login_result)
+            registration_result = registration.registrationClass().registrationForm(driver)
+            a.append(registration_result) 
             hotel_result = hotelBooking.hotelClass().hotelForm(driver)
-            a.append(hotel_result)
+            a.append(hotel_result)  
             flight_result = flightBooking.flightClass().flightForm(driver)
-            a.append(flight_result)
+            a.append(flight_result)  
             car_book_result = carBooking.carClass().carForm(driver)
-            a.append(car_book_result)
+            a.append(car_book_result)  
+            login_result = login.loginClass().login(driver)
             store(a)
             
-# test_case1=Lc.loginForm()
-# Hc=hotelClass()
-# test_case2=Hc.hotelForm()
-# Cc=carClass()
-# test_case3=Cc.carForm()
-# Fc=flightClass()
-# test_case4=Fc.flightForm()
-# print(test_case1,test_case2,test_case3,test_case4)

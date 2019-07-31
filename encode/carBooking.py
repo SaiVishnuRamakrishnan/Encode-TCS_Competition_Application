@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import xml.etree.cElementTree as ET
 import pyscreenshot as ImageGrab
 import random
+import logging
 import driverMain
 
 
@@ -27,123 +28,151 @@ class carClass:
             def carForm(self ,driver):
                 try:
                     tree = ET.ElementTree(file="data.xml")
-                    root= tree.getroot()
+                    root = tree.getroot()
                     for child in root:
                         if child.tag == "items":
                             for i in child:
-                                username=(i.get('username'))
-                                email=(i.get('email'))
-                                password=(i.get('password'))
-                                lastname=(i.get('lastname'))
-                                smonth=(i.get('smonth'))
-                                sdate=(i.get('sdate'))
-                                dmonth=(i.get('dmonth'))
-                                ddate=(i.get('ddate'))
-                                adult=(i.get('adult'))
-                                child=(i.get('child'))
-                                phonenumber=(i.get('phonenumber'))
-                                cardnumber=(i.get('cardnumber'))
+                                username = (i.get('username'))
+                                email = (i.get('email'))
+                                password = (i.get('password'))
+                                lastname = (i.get('lastname'))
+                                smonth = (i.get('smonth'))
+                                sdate = (i.get('sdate'))
+                                dmonth = (i.get('dmonth'))
+                                ddate = (i.get('ddate'))
+                                adult = (i.get('adult'))
+                                child = (i.get('child'))
+                                phonenumber = (i.get('phonenumber'))
+                                cardnumber = (i.get('cardnumber'))
 
-                    
-                    elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[1]/li[4]/a')
+                    logging.basicConfig(level=logging.INFO,filename='car_log_test.log',filemode='a',format='%(name)s - %(levelname)s - %(message)s')
+                    logging.info("-----------CAR BOOKING------------")
+                    elem = driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[1]/li[4]/a')
                     elem.click()
-                    time.sleep(8)
+                    time.sleep(6)
 
+                    im=ImageGrab.grab(bbox = None)
+                    # number = random.randrange(1,10000,1)
+                    im.save('Screenshots/car_main_page.png')
+                    time.sleep(3)
+
+                    logging.info("ENTERING USER CRDENTIALS")
                                                     #Pickup Location
-                    pickup=driver.find_element_by_xpath("//*[@id='s2id_carlocations']/a/span[1]")
+                    pickup = driver.find_element_by_xpath("//*[@id='s2id_carlocations']/a/span[1]")
                     pickup.click()
                     driver.implicitly_wait(60)
 
                                                     #Manchester-Location        
-                    manch=driver.find_element_by_xpath("//*[@id='select2-drop']/ul/li[2]/div")
+                    manch = driver.find_element_by_xpath("//*[@id='select2-drop']/ul/li[2]/div")
                     manch.click()
                     driver.implicitly_wait(60)
 
                                                     #To search for search button
-                    clc=driver.find_element_by_xpath("//*[@id='body-section']")
+                    clc = driver.find_element_by_xpath("//*[@id='body-section']")
                     clc.click()
 
                                                                         #Date-Depart 
-                    date1=driver.find_element_by_xpath("//*[@id='departcar']")
+                    date1 = driver.find_element_by_xpath("//*[@id='departcar']")
                     date1.click()
                     date1.clear()
                     date1.send_keys("31/07/2019")
                     driver.implicitly_wait(10)
                                                     #Time-Depart
-                    t1=driver.find_element_by_xpath("//*[@id='cars']/form/div[4]/div/select/option[15]")
+                    t1 = driver.find_element_by_xpath("//*[@id='cars']/form/div[4]/div/select/option[15]")
                     t1.click()
                     driver.implicitly_wait(60)
                                                     #Date-Return
-                    date2=driver.find_element_by_xpath("//*[@id='returncar']")
+                    date2 = driver.find_element_by_xpath("//*[@id='returncar']")
                     date2.click()
                     date2.clear()
                     date2.send_keys("02/08/2019")
                     driver.implicitly_wait(10)                                
                                                     #Time-Return
-                    t2=driver.find_element_by_xpath("//*[@id='cars']/form/div[6]/div/select/option[19]")
+                    t2 = driver.find_element_by_xpath("//*[@id='cars']/form/div[6]/div/select/option[19]")
                     t2.click()
                     driver.implicitly_wait(60)                                 
                                                     #Search     
-                    search=driver.find_element_by_xpath("//*[@id='cars']/form/div[7]/button")
+                    search =driver.find_element_by_xpath("//*[@id='cars']/form/div[7]/button")
                     search.click()
                     driver.implicitly_wait(60)
                                                     #Car-Page
-                    kia=driver.find_element_by_xpath("//*[@id='body-section']/div[6]/div/div[3]/div/table/tbody/tr/td/div[2]/div/h4/a/b")                                
+                    kia = driver.find_element_by_xpath("//*[@id='body-section']/div[6]/div/div[3]/div/table/tbody/tr/td/div[2]/div/h4/a/b")                                
                     kia.click()
                                                     #USD to INR 
-                    usd=driver.find_element_by_xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[2]/a")
+                    usd = driver.find_element_by_xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[2]/a")
                     usd.click()
-                    inr=driver.find_element_by_xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[2]/ul/li[8]/a")
+                    inr = driver.find_element_by_xpath("/html/body/nav/div/div[2]/ul[2]/ul/li[2]/ul/li[8]/a")
                     inr.click()
                     driver.execute_script("window.scrollTo(0, 1000)")
                                                     #Book-Now
                     time.sleep(10)                           
-                    bknow=driver.find_element_by_xpath("//*[@id='body-section']/div[4]/div/div[2]/form/button")                                
+                    bknow = driver.find_element_by_xpath("//*[@id='body-section']/div[4]/div/div[2]/form/button")                                
                     bknow.click()
+
+                    logging.info("USER CREDENTIALS ENTERED")
 
                     time.sleep(6)
                     #error in filling details
+                    logging.error("BOOKING USER CREDENTIALS CANNOT BE ALTERED")
 
-                    im = ImageGrab.grab()
-                    number = random.randrange(1,10000,1)
-                    im.save('screenshot'+str(number)+'.png')
+                    im=ImageGrab.grab(bbox = None)
+                    # number = random.randrange(1,10000,1)
+                    im.save('Screenshots/car_booking_credentials_error.png')
                     time.sleep(3)
 
                     driver.execute_script("window.scrollTo(0, 900)")
 
-                    elem=driver.find_element_by_xpath('//*[@id="body-section"]/div/div[1]/div/div[1]/div/div[4]/button')
+                    elem = driver.find_element_by_xpath('//*[@id="body-section"]/div/div[1]/div/div[1]/div/div[4]/button')
                     elem.click()
                     time.sleep(8)
 
                     driver.execute_script("window.scrollTo(0, 50)")
 
-                    im = ImageGrab.grab()
-                    number = random.randrange(1,10000,1)
-                    im.save('screenshot'+str(number)+'.png')
+                    logging.info("SCREENSHOT CAPTURED")
+
+                    im=ImageGrab.grab(bbox = None)
+                    # number = random.randrange(1,10000,1)
+                    im.save('Screenshots/car_booked.png')
                     time.sleep(3)
 
                     driver.execute_script("window.scrollTo(0, 1000)")
 
-                    elem=driver.find_element_by_xpath('//*[@id="downloadInvoice"]')
+                    logging.info("INVOICE DOWNLOADED")
+
+                    elem = driver.find_element_by_xpath('//*[@id="downloadInvoice"]')
                     elem.click()
                     time.sleep(5)
 
                     driver.execute_script("window.scrollTo(0, 1000)")
 
-                    elem=driver.find_element_by_xpath('//*[@id="btn"]')
+                    logging.info("INVOICE PDF DOWNLOADED")
+
+                    elem = driver.find_element_by_xpath('//*[@id="btn"]')
                     elem.click()
                     time.sleep(4)
 
-                    elem=driver.find_element_by_xpath('//*[@id="body-section"]/div[1]/div[2]/div[2]/center/button[2]')
+                    logging.info("PAYMENT METHOD SELECTED")
+
+                    elem = driver.find_element_by_xpath('//*[@id="body-section"]/div[1]/div[2]/div[2]/center/button[2]')
                     elem.click()
 
-                    elem=driver.find_element_by_xpath('//*[@id="gateway"]/option[5]')
-                    elem.click()
-                    time.sleep(5)
+                    # elem = driver.find_element_by_xpath('//*[@id="gateway"]/option[5]')
+                    # elem.click()
+                    # time.sleep(5)
 
-                    elem=driver.find_element_by_xpath('//*[@id="8"]')
+                    logging.info("PAY ON ARRIVAL SELECTED")
+
+                    elem = driver.find_element_by_xpath('//*[@id="8"]')
                     elem.click()
+                    time.sleep(3)
                     elem.send_keys(Keys.RETURN)
+
+                    im=ImageGrab.grab(bbox = None)
+                    # number = random.randrange(1,10000,1)
+                    im.save('Screenshots/car_booked_invoice.png')
+                    time.sleep(3)
+
+                    logging.info("--------CAR BOOKING SUCESSFULLY TESTED---------")
 
                     return 1
 

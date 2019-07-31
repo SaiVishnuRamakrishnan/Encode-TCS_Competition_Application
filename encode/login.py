@@ -7,119 +7,75 @@ from selenium.webdriver.support import expected_conditions as EC
 import xml.etree.cElementTree as ET
 import pyscreenshot as ImageGrab
 import random
+import logging
 import driverMain
 
 class loginClass:
-    global username
+
     global email
     global password
-    global lastname
-    global smonth
-    global sdate 
-    global dmonth
-    global ddate
-    global adult
-    global child
-    global phonenumber
-    
-    #crediantionals
 
-    def loginForm(self, driver):
+
+    def login(self ,driver):
         try:
             tree = ET.ElementTree(file="data.xml")
-            root= tree.getroot()
+            root = tree.getroot()
             for child in root:
                 if child.tag == "items":
                     for i in child:
-                        username=(i.get('username'))
-                        email=(i.get('email'))
-                        password=(i.get('password'))
-                        lastname=(i.get('lastname'))
-                        # smonth=(i.get('smonth'))
-                        # sdate=(i.get('sdate'))
-                        # dmonth=(i.get('dmonth'))
-                        # ddate=(i.get('ddate'))
-                        # adult=(i.get('adult'))
-                        child=(i.get('child'))
-                        phonenumber=(i.get('phonenumber'))
-            # driver = webdriver.Chrome()
-            elem=driver.get("https://phptravels.com/demo/")
-            driver.maximize_window()
+                        email = (i.get('email'))
+                        password = (i.get('password'))
+
+            logging.basicConfig(level=logging.INFO,filename='login_log_test.log',filemode='a',format='%(name)s - %(levelname)s - %(message)s')
+            logging.info("-----------LOGOUT------------")
+            elem = driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[1]/li[5]/a')
+            elem.click()
             time.sleep(5)
 
-            try:
-                # elem=driver.find_element_by_xpath("//*[@id='onesignal-popover-cancel-button']")
-                # elem.click()
-                # time.sleep(3)    
-                elem=driver.find_element_by_xpath("//*[@id='PopupSignupForm_0']/div[2]/div[1]")
-                elem.click()
-                time.sleep(2)
-            except:
-                print("Error")
-            
-            elem=driver.find_element_by_xpath('/html/body/section[2]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/a/small')
+            elem = driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[1]/a')
             elem.click()
-            driver.switch_to_window(driver.window_handles[1])
-            driver.implicitly_wait(60)
+            time.sleep(2)
 
-            elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[1]/a')
-            elem.click()
             elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[1]/ul/li[2]/a')
             elem.click()
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[3]/input')
-            elem.click()
-            elem.send_keys(username)
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[4]/input')
-            elem.click()
-            elem.send_keys(lastname)
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[5]/input')
-            elem.click()
-            elem.send_keys(phonenumber)
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[6]/input')
-            elem.click()
-            elem.send_keys(email)
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[7]/input')
-            elem.click()
-            elem.send_keys(password)
-            driver.execute_script("window.scrollTo(0, 500)")
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[8]/input')
-            elem.click()
-            elem.send_keys(password)
-            
-            elem=driver.find_element_by_xpath('//*[@id="headersignupform"]/div[9]/button')
-            elem.click()
-
-            time.sleep(7)
-
-            elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[1]/li[1]/a/span')
-            elem.click()
             time.sleep(5)
 
-            # elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/a/strong')
-            # elem.click()
-            # elem=driver.find_element_by_xpath('/html/body/nav/div/div[2]/ul[2]/ul/li[2]/ul/li[8]/a')
-            # elem.click()
-            # time.sleep(5)
-            # print("ighi")
+            logging.info("LOGOUT SUCESSFULLY")
+
+            logging.info("-----------LOGIN------------")
+
+            logging.info("LOGIN CRDENTIALS ENTERED")
+
+            elem = driver.find_element_by_xpath('//*[@id="loginfrm"]/div[1]/div[5]/div/div[1]/input')
+            elem.click()
+            time.sleep(1)
+            elem.send_Keys(email)
+
+            elem = driver.find_element_by_xpath('//*[@id="loginfrm"]/div[1]/div[5]/div/div[2]/input')
+            elem.click()
+            time.sleep(1)
+            elem.send_Keys(password)
+
+            elem = driver.find_element_by_xpath('//*[@id="loginfrm"]/button')
+            elem.click()
+            time.sleep(8)
+
+            logging.info("LOGIN SUCESSFULLY")
+
+            logging.info("SCREENSHOT TAKEN")
+
+            im=ImageGrab.grab(bbox = None)
+            # number = random.randrange(1,10000,1)
+            im.save('Screenshots/Relogin.png')
+            time.sleep(3)
+
+            logging.info("-----------LOGIN SUCESSFULLY TESTED------------")
+
             return 1
-        except :
+
+        except:
             return 0
 
 if __name__ == "__main__":
-    obj  = loginClass()
-    
-    obj.loginForm(driverMain.Core)
-   
-    # driverMain.store()
-
-
-
-
-
-
-        
-
-
-        
-    
-
+    obj = loginClass()
+    obj.login(driverMain.Core)

@@ -1,0 +1,46 @@
+root - INFO - -----------------REGISTRATION-----------------
+root - INFO - ----------HOTEL BOOKING------------
+root - INFO - ENTERING USER REQUEST CREDENTIALS
+root - INFO - -----------------REGISTRATION-----------------
+root - INFO - ----------HOTEL BOOKING------------
+root - INFO - ENTERING USER REQUEST CREDENTIALS
+root - INFO - -----------FLIGHT BOOKING----------
+root - INFO - -----------CAR BOOKING------------
+root - INFO - -----------LOGOUT------------
+root - INFO - -----------------REGISTRATION-----------------
+root - INFO - ENTERING LOGIN CRDENTIALS
+root - INFO - ----------HOTEL BOOKING------------
+root - INFO - ENTERING USER REQUEST CREDENTIALS
+root - INFO - -----------FLIGHT BOOKING----------
+root - INFO - -----------CAR BOOKING------------
+root - INFO - -----------LOGOUT------------
+root - INFO - -----------------REGISTRATION-----------------
+root - INFO - ENTERING LOGIN CRDENTIALS
+root - INFO - USER LOGGED IN
+root - INFO - REGISTRATION SUCESSFULL
+root - INFO - ------------REGISTRATION SUCESSFULL-----------
+root - INFO - ----------HOTEL BOOKING------------
+root - INFO - ENTERING USER REQUEST CREDENTIALS
+root - INFO - USER CREDENTIALAS ENTERED
+root - INFO - CHANGING THE CURRENCY
+root - INFO - APPLYING FILTERS
+root - ERROR - FILTERS NOT APPLIED
+root - INFO - SCREENSHOT CAPTURED
+root - INFO - SELECTING HOTEL
+root - ERROR - NO OTHER THAN DETAILS BUTTON IS USED TO SELECT HOTEL
+root - INFO - SCREENSHOT CAPTURED
+root - INFO - ENTERING USER CREDENTIALS
+root - INFO - ENTERING USER CARD CREDENTIALS
+root - ERROR - REPORT NOT GENERATED
+root - INFO - SCREEN CAPTURED
+root - INFO - -----------------HOTEL BOOKING SUCESSFULLY TESTED-------------------
+root - INFO - -----------FLIGHT BOOKING----------
+root - INFO - ------------ENTERING USER REQURIMENTS-----------
+root - INFO - CHANGING CURRENCY
+root - INFO - BOOKING A FLIGHT
+root - INFO - -----------CAR BOOKING------------
+root - INFO - ENTERING USER CRDENTIALS
+root - INFO - -----------LOGOUT------------
+root - INFO - LOGOUT SUCESSFULLY
+root - INFO - -----------LOGIN------------
+root - INFO - LOGIN CRDENTIALS ENTERED

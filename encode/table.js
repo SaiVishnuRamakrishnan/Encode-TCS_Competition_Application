@@ -1,5 +1,5 @@
 var result_table = document.getElementById("result_table");
-var test_case = ["Login", "Hotel Booking", "Flight Booking", "Car Booking"]
+var test_case = ["Login", "Hotel Booking", "Flight Booking", "Car Booking","Logout"]
 
 var xobj = new XMLHttpRequest();
 xobj.overrideMimeType("application/json");
