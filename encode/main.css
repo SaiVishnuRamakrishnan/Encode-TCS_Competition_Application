@@ -1,0 +1,105 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    color: #032535;
+}
+.report-table{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 0;
+  }
+  .report-label{
+      display: flex;
+    justify-content: flex-start;
+    width: calc(100% - 160px);
+    padding: 20px 80px;
+  }
+  .report-label span{
+      font-size: 20px;
+      font-weight: bold;
+  }
+  table {
+    font-family: arial, sans-serif;
+    width: 90%;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.185);
+  }
+
+  table th:first-child {
+    border-radius: 6px 0 0 0;
+  }
+
+  table th:last-child {
+    border-radius: 0 6px 0 0;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  #result-pie {
+    width: 600px !important;
+    height: 300px !important;
+    animation: chartjs-render-animation 0.5s;
+  }
+  .graph{
+      align-items: flex-start;
+  }
+
+  .report-container{
+      margin: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.164);
+      overflow: auto;
+      height: calc(100vh - 40px);
+      background-color: rgba(235, 255, 251, 0.663);
+  }
+
+  body{
+      overflow: hidden;
+      background-color: #61234E;
+  }
+
+  
+/* total width */
+.report-container::-webkit-scrollbar {
+    background-color:#fff;
+    width:16px
+}
+
+/* background of the scrollbar except button or resizer */
+.report-container::-webkit-scrollbar-track {
+    background-color:#fff
+}
+.report-container::-webkit-scrollbar-track:hover {
+    background-color:#f4f4f4
+}
+
+/* scrollbar itself */
+.report-container::-webkit-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border:5px solid #fff
+}
+.report-container::-webkit-scrollbar-thumb:hover {
+    background-color:#a0a0a5;
+    border:4px solid #f4f4f4
+}
+
+.report-result{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.report-result span{
+    font-weight: 700;
+    font-size: 35px;
+}
